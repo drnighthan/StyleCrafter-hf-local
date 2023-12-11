@@ -142,15 +142,20 @@ def infer(image, prompt, infer_type='image', seed=123, style_strength=1.0, steps
                                     scale_scalar=scale_scalar
                                     )
     samples = model.decode_first_stage(samples)  
+    os.makedirs('./output/video/', exist_ok=True)
+    os.makedirs('./output/image/', exist_ok=True)
+
 
     if infer_type == 'image':
         samples = samples[:, :, 0, :, :].detach().cpu()
-        out_path = "./output.png"
+        timestr = time.strftime('%Y%m%d_%H%M')
+        out_path = "./output/image/output"+timestr+".png"
         torchvision.utils.save_image(samples, out_path, nrow=1, normalize=True, range=(-1, 1))
 
     elif infer_type == 'video':
         samples = samples.detach().cpu()
-        out_path = "./output.mp4"
+        timestr = time.strftime('%Y%m%d_%H%M')
+        out_path = "./output/video/output"+timestr+".mp4"
         video = torch.clamp(samples, -1, 1)
         video = video.permute(2, 0, 1, 3, 4) # [T, B, C, H, W]
         frame_grids = [torchvision.utils.make_grid(video[t], nrow=1) for t in range(video.shape[0])]
