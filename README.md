@@ -56,28 +56,11 @@ From Tsinghua University and Tencent AI Lab.
 
 It takes approximately 5 seconds to generate a 512×512 image and 85 seconds to generate a 320×512 video with 16 frames using a single NVIDIA A100 (40G) GPU. A GPU with at least 16G GPU memory is required to perform the inference process.
 
-## ⚙️ Setup
 
-```bash
-conda create -n stylecrafter python=3.8.5
-conda activate stylecrafter
-pip install -r requirements.txt
-```
+## 💫 Local Inference
 
-## 💫 Inference
-
-1) Download all checkpoints according to the [instructions](./checkpoints/README.md)
-2) Run the commands in terminal.
-```bash
-# style-guided text-to-image generation
-sh scripts/run_infer_image.sh
-
-# style-guided text-to-video generation
-sh scripts/run_infer_video.sh
-```
-3) (Optional) Infernce on your own data according to the [instructions](./eval_data/README.md)
-
-
+1) Run Install_cn.ps1 in PowerShell
+2) Run run_gui.ps1 in PowerShell
 
 ## 👨‍👩‍👧‍👦 Crafter Family
 [VideoCrafter1](https://github.com/AILab-CVC/VideoCrafter): Framework for high-quality text-to-video generation.
